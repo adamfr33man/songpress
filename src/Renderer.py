@@ -70,8 +70,8 @@ class Renderer(object):
 				if not found:
 					self.chordPatterns.append(current)
 				else:
-					self.currentBlock.RemoveChordBoxes()		
-			self.song.AddBox(self.currentBlock)			
+					self.currentBlock.RemoveChordBoxes()
+			self.song.AddBox(self.currentBlock)
 			self.currentBlock = None
 
 	def BeginVerse(self, label=None):
@@ -115,6 +115,11 @@ class Renderer(object):
 		self.BeginBlock(SongBlock.title)
 		self.AddText(title, SongText.title)
 		#self.EndBlock()
+
+	def AddSubTitle(self, subtitle):
+		self.BeginBlock(SongBlock.subtitle)
+		self.AddText(subtitle, SongText.subtitle)
+		self.EndBlock()
 
 	def BeginLine(self):
 		if self.currentLine == None:
@@ -192,6 +197,10 @@ class Renderer(object):
 						a = self.GetAttribute()
 						if a != None:
 							self.AddTitle(a)
+					elif cmd == 'st' or cmd == 'subtitle':
+						a = self.GetAttribute()
+						if a != None:
+							self.AddSubTitle(a)
 					elif cmd == 'verse':
 						self.BeginVerse(self.GetAttribute())
 

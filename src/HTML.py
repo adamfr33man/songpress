@@ -46,7 +46,7 @@ template = """
 				    font-size: 18px;
 				}
 
-				.author {
+				.subtitle {
 				  font-size: 12px;
 				  font-family: sans-serif;
 				}
@@ -75,6 +75,7 @@ class HtmlExporter(object):
 		# dc is a dummy parameter
 		classes = {
 			SongBlock.title: 'title',
+			SongBlock.subtitle: 'subtitle',
 			SongBlock.chorus: 'chorus',
 			SongBlock.verse: 'verse',
 		}
