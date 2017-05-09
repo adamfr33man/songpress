@@ -17,29 +17,46 @@ template = """
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<style type="text/css">
 			<!--
-				div.chorus,div.verse,div.title {
-					margin-bottom: 1.5em;
-					font-family: "%(face)s";
+				.chorus, .verse, .title, .chord {
+				    font-family: "Arial";
 				}
-				div.chorus table,div.verse table, div.title table {
-					margin: 0px;
-					padding: 0px;
-					border: 0px;
-					border-collapse: collapse;
+
+				.chorus, .verse, .author {
+				    margin-bottom: 15px;
 				}
+
+				.chorus table, .verse table {
+				    margin: 0px 0px 0px 20px;
+				    padding: 0px;
+				    border: 0px;
+				    border-collapse: collapse;
+				}
+
 				.chorus {
-					font-weight: bold;
+				    /*font-weight: bold;*/
 				}
+
 				.chord {
-					font-style: italic;
-					font-size: small;
-					font-weight: normal;
+				    font-size: 14px;
+				    font-weight: bold;
 				}
+
 				.title {
-					font-weight: bold;
-					text-decoration: underline;
+				    font-weight: bold;
+				    font-size: 18px;
 				}
-			-->
+
+				.author {
+				  font-size: 12px;
+				  font-family: sans-serif;
+				}
+
+				.section-heading {
+				  font-size: 14px;
+				  font-style: italic;
+				  text-transform: uppercase;
+				  margin: 10px 0px 5px 0px;
+				}			-->
 		</style>
 	</head>
 	<body>
@@ -65,6 +82,8 @@ class HtmlExporter(object):
 		title = "Songpress"
 		for block in song.boxes:
 			b = "<div class=\"%s\">" % (classes[block.type])
+			if block.type == SongBlock.verse or block.type == SongBlock.chorus:
+				b += "<div class=\"section-heading\">%s</div>" % classes[block.type]
 			for line in block.boxes:
 				tc = "<td>"
 				tt = "<td>"
