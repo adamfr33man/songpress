@@ -84,7 +84,10 @@ class HtmlExporter(object):
 		for block in song.boxes:
 			b = "<div class=\"%s\">" % (classes[block.type])
 			if block.type == SongBlock.verse or block.type == SongBlock.chorus:
-				b += "<div class=\"section-heading\">%s</div>" % classes[block.type]
+				block_label = block.label
+				if block_label is None:
+					block_label = classes[block.type]
+				b += "<div class=\"section-heading\">%s</div>" % block_label
 			for line in block.boxes:
 				tc = "<td>"
 				tt = "<td>"
