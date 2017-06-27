@@ -19,6 +19,7 @@ template = """
 			<!--
 				.chorus, .verse, .title, .chord {
 				    font-family: "Arial";
+					page-break-inside: avoid;
 				}
 
 				.chorus, .verse, .author {
